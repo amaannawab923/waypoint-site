@@ -1,5 +1,11 @@
 import { Reveal } from "../reveal";
 
+/**
+ * A single rule the product holds to, set across the full column width as
+ * a statement rather than a small card. It is the only object in its band,
+ * so it carries no card chrome — a hairline and the accent icon are enough
+ * to separate it, and the type does the rest.
+ */
 export function CalloutBand({
   eyebrow,
   title,
@@ -16,18 +22,24 @@ export function CalloutBand({
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-16 md:py-20"
+      className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-14 md:py-16"
     >
       <div className="container-page">
-        <Reveal className="mx-auto flex max-w-3xl flex-col items-start gap-4 rounded-2xl border border-(--color-border) bg-(--color-bg) p-7 sm:flex-row sm:items-center">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-(--color-accent-dim) text-(--color-accent)">
-            {icon}
+        <Reveal className="grid gap-x-12 gap-y-5 border-t border-(--color-border-strong) pt-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+          <div className="flex items-start gap-3.5">
+            <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-(--color-accent-dim) text-(--color-accent)">
+              {icon}
+            </span>
+            <div>
+              <p className="eyebrow mb-2">{eyebrow}</p>
+              <h3 className="text-xl leading-snug font-semibold tracking-tight text-balance text-(--color-fg) md:text-2xl">
+                {title}
+              </h3>
+            </div>
           </div>
-          <div>
-            <p className="eyebrow mb-1.5">{eyebrow}</p>
-            <h3 className="text-[0.95rem] font-semibold text-(--color-fg)">{title}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-(--color-fg-muted)">{body}</p>
-          </div>
+          <p className="text-[0.95rem] leading-relaxed text-(--color-fg-muted) md:pt-7">
+            {body}
+          </p>
         </Reveal>
       </div>
     </section>
