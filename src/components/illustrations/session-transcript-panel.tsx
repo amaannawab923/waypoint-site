@@ -33,17 +33,17 @@ export function SessionTranscriptPanel({ compact = false }: { compact?: boolean 
         {rows.slice(0, compact ? 3 : 4).map((row) => (
           <li
             key={row.label}
-            className="flex items-center justify-between gap-3 rounded-lg bg-(--color-bg) px-3.5 py-2.5"
+            className="flex items-start justify-between gap-3 rounded-lg bg-(--color-bg) px-3.5 py-2.5"
           >
-            <span className="flex min-w-0 items-center gap-2.5">
+            <span className="flex min-w-0 flex-1 items-baseline gap-2.5">
               <span className="font-mono text-[0.65rem] uppercase tracking-wide text-(--color-fg-dim)">
                 {row.kind}
               </span>
-              <span className="truncate font-mono text-xs text-(--color-fg-muted)">
+              <span className="font-mono text-xs text-(--color-fg-muted) [overflow-wrap:anywhere] sm:truncate">
                 {row.label}
               </span>
             </span>
-            <span className="shrink-0 font-mono text-[0.7rem] text-(--color-fg-dim)">
+            <span className="mt-px shrink-0 font-mono text-[0.7rem] text-(--color-fg-dim)">
               {row.meta}
             </span>
           </li>

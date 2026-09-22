@@ -22,7 +22,7 @@ export function LongForm({
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-20 md:py-28"
+      className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-16 md:py-20"
     >
       <div className="container-page">
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">

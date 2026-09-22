@@ -24,6 +24,12 @@ export function SplitSessions() {
           </p>
         </>
       }
+      facts={[
+        { k: "Modes", v: "Investigate · Fix · one-off brief" },
+        { k: "Isolation", v: "One git worktree per session" },
+        { k: "Branch", v: "agent/<KEY>, off your default" },
+        { k: "Your checkout", v: "Never touched, never moved" },
+      ]}
       href="/agents"
       linkLabel="See how sessions work"
       panel={<SessionTranscriptPanel />}

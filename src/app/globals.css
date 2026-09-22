@@ -13,7 +13,7 @@
 
   --color-fg: #f5f5f7;
   --color-fg-muted: #a1a1ac;
-  --color-fg-dim: #6b6b78;
+  --color-fg-dim: #858592;
 
   --color-accent: #818cf8;
   --color-on-accent: #0b0a12;
@@ -359,6 +359,55 @@ body {
   text-transform: uppercase;
   color: var(--color-fg-dim);
   font-weight: 500;
+}
+
+/* On a phone a three-column table crushes each column to a third of the
+   screen and stacks single cells into eight-line towers. Below 640px each
+   row becomes its own card and every cell carries its column name, so the
+   table reads as a list instead of scrolling sideways. */
+@media (max-width: 639px) {
+  .spec-table,
+  .spec-table tbody,
+  .spec-table tr,
+  .spec-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .spec-table thead {
+    display: none;
+  }
+
+  .spec-table tr {
+    padding: 0.25rem 0 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .spec-table tr:last-child {
+    border-bottom: 0;
+    padding-bottom: 0.25rem;
+  }
+
+  .spec-table td {
+    padding: 0.55rem 0 0;
+    border-bottom: 0;
+  }
+
+  .spec-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  .spec-table td:first-child {
+    font-weight: 600;
+    color: var(--color-fg);
+  }
 }
 
 /* Numbered flow badge. */

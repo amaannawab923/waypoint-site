@@ -24,7 +24,7 @@ export function FeatureGrid({
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-20 md:py-28"
+      className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-16 md:py-20"
     >
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">

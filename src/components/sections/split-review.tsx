@@ -19,6 +19,12 @@ export function SplitReview() {
           </p>
         </>
       }
+      facts={[
+        { k: "Unit", v: "One card per proposed change" },
+        { k: "Approve", v: "Diff and status, atomically" },
+        { k: "Conflicts", v: "Named superseded, not overwritten" },
+        { k: "Undo", v: "Any approval, at any time" },
+      ]}
       href="/review"
       linkLabel="Walk through a proposal"
       panel={

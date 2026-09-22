@@ -7,6 +7,8 @@ type SplitRowProps = {
   href?: string;
   linkLabel?: string;
   panel: React.ReactNode;
+  /** Two to three concrete specifics, shown as a strip under the body. */
+  facts?: { k: string; v: string }[];
   /** Panel on the left, text on the right. */
   reverse?: boolean;
   theme?: "light" | "dark";
@@ -25,13 +27,14 @@ export function SplitRow({
   href,
   linkLabel = "Learn more",
   panel,
+  facts,
   reverse = false,
   theme = "light",
 }: SplitRowProps) {
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28"
+      className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-14 md:py-20"
     >
       <div className="container-page">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
@@ -45,6 +48,21 @@ export function SplitRow({
             <div className="mt-4 space-y-3 text-[0.95rem] leading-relaxed text-(--color-fg-muted)">
               {body}
             </div>
+            {facts?.length ? (
+              <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-3 border-t border-(--color-border) pt-5 sm:grid-cols-2">
+                {facts.map((f) => (
+                  <div key={f.k}>
+                    <dt className="font-mono text-[0.68rem] tracking-wide text-(--color-fg-dim) uppercase">
+                      {f.k}
+                    </dt>
+                    <dd className="mt-1 text-[0.85rem] leading-snug text-(--color-fg)">
+                      {f.v}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
+
             {href ? (
               <a
                 href={href}

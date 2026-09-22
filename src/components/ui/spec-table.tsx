@@ -18,7 +18,7 @@ export function SpecTable({
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28"
+      className="relative border-t border-(--color-border) bg-(--color-bg) py-16 md:py-20"
     >
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
@@ -34,7 +34,7 @@ export function SpecTable({
         </Reveal>
 
         <Reveal className="mt-12">
-          <div className="panel-frame overflow-x-auto">
+          <div className="panel-frame">
             <table className="spec-table">
               <thead>
                 <tr>
@@ -49,6 +49,7 @@ export function SpecTable({
                     {row.map((cell, j) => (
                       <td
                         key={j}
+                        data-label={headers[j]}
                         className="text-(--color-fg-muted)"
                       >
                         {cell}

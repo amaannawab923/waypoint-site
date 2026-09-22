@@ -21,12 +21,12 @@ export function SiteFooter() {
             <p className="text-xs font-medium tracking-wide text-(--color-fg-dim) uppercase">
               Product
             </p>
-            <ul className="mt-3 space-y-2.5">
+            <ul className="mt-1 sm:mt-3 sm:space-y-2.5">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg)"
+                    className="inline-flex min-h-11 items-center text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg) sm:min-h-0"
                   >
                     {link.label}
                   </a>
@@ -39,13 +39,13 @@ export function SiteFooter() {
             <p className="text-xs font-medium tracking-wide text-(--color-fg-dim) uppercase">
               Project
             </p>
-            <ul className="mt-3 space-y-2.5">
+            <ul className="mt-1 sm:mt-3 sm:space-y-2.5">
               <li>
                 <a
                   href={GITHUB_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg)"
+                  className="inline-flex min-h-11 items-center text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg) sm:min-h-0"
                 >
                   Source on GitHub
                 </a>
@@ -55,7 +55,7 @@ export function SiteFooter() {
                   href={`${GITHUB_URL}/blob/main/LICENSE`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg)"
+                  className="inline-flex min-h-11 items-center text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg) sm:min-h-0"
                 >
                   AGPL-3.0 license
                 </a>
@@ -67,11 +67,11 @@ export function SiteFooter() {
             <p className="text-xs font-medium tracking-wide text-(--color-fg-dim) uppercase">
               Honesty
             </p>
-            <ul className="mt-3 space-y-2.5">
+            <ul className="mt-1 sm:mt-3 sm:space-y-2.5">
               <li>
                 <a
                   href="/honest"
-                  className="text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg)"
+                  className="inline-flex min-h-11 items-center text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg) sm:min-h-0"
                 >
                   What leaves this machine
                 </a>
@@ -79,7 +79,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href="/changelog"
-                  className="text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg)"
+                  className="inline-flex min-h-11 items-center text-sm text-(--color-fg-muted) transition-colors hover:text-(--color-fg) sm:min-h-0"
                 >
                   What shipped
                 </a>

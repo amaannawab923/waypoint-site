@@ -22,6 +22,12 @@ export function SplitVerify() {
           </p>
         </>
       }
+      facts={[
+        { k: "Decision model", v: "Jev, one call per step" },
+        { k: "Per decision", v: "320–390ms in the benchmark" },
+        { k: "Full QA cycle", v: "13.9s wall, in the app" },
+        { k: "Evidence", v: "4 screenshots, returned inline" },
+      ]}
       href="/verify"
       linkLabel="See the measured numbers"
       panel={<VerifyFramesPanel />}
