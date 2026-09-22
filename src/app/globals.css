@@ -246,3 +246,107 @@ body {
 .animate-stamp {
   animation: stamp-pulse 5s ease-in-out infinite;
 }
+
+/* ---------------------------------------------------------------------
+   Shared section-archetype primitives, used across all six pages so the
+   site reads as one system rather than six one-off layouts.
+   ------------------------------------------------------------------- */
+
+/* A large UI panel that bleeds past its column on wide viewports — the
+   serval.com "split row" move. Panels stay inside the viewport at every
+   width; the bleed is achieved with a negative margin on the parent grid,
+   not overflow, so it never causes horizontal scroll. */
+.panel-frame {
+  border-radius: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-raised);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+[data-theme="light"] .panel-frame {
+  box-shadow: 0 30px 60px -35px rgba(15, 23, 42, 0.18);
+}
+
+/* Dense feature-grid card. */
+.feature-card {
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-raised);
+  padding: 1.5rem;
+  transition: border-color 200ms ease;
+}
+
+.feature-card:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* Large tabular metric figure. */
+.metric-figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Editorial pull-quote: a large opening glyph + generous leading. */
+.pull-quote {
+  position: relative;
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-fg);
+}
+
+.pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.3em;
+  left: -0.05em;
+  font-size: 3.5em;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.35;
+  font-family: Georgia, serif;
+}
+
+/* Comparison / spec table. */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.spec-table th,
+.spec-table td {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.spec-table th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-fg-dim);
+  font-weight: 500;
+}
+
+/* Numbered flow badge. */
+.flow-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
