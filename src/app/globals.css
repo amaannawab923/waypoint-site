@@ -1,52 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  /* Cinematic dark-first palette */
-  --color-bg: #08090b;
-  --color-bg-raised: #101319;
-  --color-bg-raised-2: #171b22;
-  --color-border: #262a33;
-  --color-border-soft: #1a1d24;
+  /* Elegant, serval.com-register palette. Root = the dark sections
+     (hero, the ultrafast showpiece, the footer). Light product sections
+     override these same variable names inside [data-theme="light"] below,
+     so components never need theme-specific class names. */
+  --color-bg: #0b0a12;
+  --color-bg-raised: #131220;
 
-  --color-fg: #f3f1ea;
-  --color-fg-muted: #a3a6b0;
-  --color-fg-dim: #6c6f7a;
+  --color-border: rgba(148, 163, 184, 0.14);
+  --color-border-strong: rgba(148, 163, 184, 0.4);
 
-  --color-accent: #ffb020;
-  --color-accent-strong: #ff8a1f;
-  --color-on-accent: #17110a;
+  --color-fg: #f5f5f7;
+  --color-fg-muted: #a1a1ac;
+  --color-fg-dim: #6b6b78;
 
-  --color-verify: #33e0a8;
-  --color-verify-strong: #16c48f;
-  --color-on-verify: #04140f;
+  --color-accent: #818cf8;
+  --color-on-accent: #0b0a12;
+  --color-accent-dim: rgba(129, 140, 248, 0.14);
 
-  --color-danger: #ff5c5c;
+  --color-danger: #f87171;
 
-  --font-display: var(--font-fraunces);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Light product sections — verified contrast on a near-white ground
+   (fg-muted #475569 on #F8F9FC is ~7.5:1; accent #4F46E5 is ~5.6:1). */
+[data-theme="light"] {
+  --color-bg: #f8f9fc;
+  --color-bg-raised: #ffffff;
+
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-border-strong: rgba(15, 23, 42, 0.28);
+
+  --color-fg: #14141c;
+  --color-fg-muted: #475569;
+  --color-fg-dim: #475569;
+
+  --color-accent: #4f46e5;
+  --color-on-accent: #ffffff;
+  --color-accent-dim: rgba(79, 70, 229, 0.08);
+
+  --color-danger: #dc2626;
 }
 
 @theme inline {
   --color-bg: var(--color-bg);
   --color-bg-raised: var(--color-bg-raised);
-  --color-bg-raised-2: var(--color-bg-raised-2);
   --color-border: var(--color-border);
-  --color-border-soft: var(--color-border-soft);
+  --color-border-strong: var(--color-border-strong);
   --color-fg: var(--color-fg);
   --color-fg-muted: var(--color-fg-muted);
   --color-fg-dim: var(--color-fg-dim);
   --color-accent: var(--color-accent);
-  --color-accent-strong: var(--color-accent-strong);
   --color-on-accent: var(--color-on-accent);
-  --color-verify: var(--color-verify);
-  --color-verify-strong: var(--color-verify-strong);
-  --color-on-verify: var(--color-on-verify);
+  --color-accent-dim: var(--color-accent-dim);
   --color-danger: var(--color-danger);
 
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
 }
 
 * {
@@ -74,11 +87,7 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.font-display {
-  font-family: var(--font-display);
+  border-radius: 4px;
 }
 
 .font-mono {
@@ -102,29 +111,36 @@ body {
   text-wrap: balance;
 }
 
-/* Film-grain overlay used behind the hero and showpiece sections */
-.grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
+/* Tabular numerals for anything data/timing related. */
+.tnum {
+  font-variant-numeric: tabular-nums;
 }
 
-.vignette {
+/* Small tracked-out section label ("eyebrow"), serval-style. */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Subtle dot-grid texture for the dark hero/showpiece grounds. */
+.dot-grid {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    120% 90% at 50% 20%,
-    transparent 40%,
-    rgba(0, 0, 0, 0.55) 100%
+  opacity: 0.5;
+  background-image: radial-gradient(
+    rgba(148, 163, 184, 0.18) 1px,
+    transparent 1px
   );
+  background-size: 26px 26px;
+  mask-image: radial-gradient(80% 60% at 50% 0%, black 40%, transparent 100%);
 }
 
-/* Respect reduced motion globally: kill scroll-linked / decorative transforms */
+/* Respect reduced motion globally: kill scroll-linked / decorative transforms
+   and render every animation's final frame immediately. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -136,29 +152,39 @@ body {
   }
 }
 
+/* CSS-only entrance for above-the-fold content (the hero). Deliberately
+   NOT driven by GSAP/rAF: a backgrounded or not-yet-interacted-with tab
+   can leave a rAF-ticked tween's "from" state stranded indefinitely,
+   which is exactly the mobile-hero bug this replaces. A CSS animation is
+   scheduled by the browser's own compositor, always resolves, and (via
+   the reduced-motion block above) completes in ~0ms when requested. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @keyframes pulse-dot {
   0%,
   100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.35;
+    opacity: 0.3;
   }
 }
 
 .animate-pulse-dot {
   animation: pulse-dot 1.6s ease-in-out infinite;
-}
-
-/* Faint dot-grid canvas used behind the coded illustrations that stand in
-   for real product screenshots (see docs/screenshots.md). */
-.illustration-grid {
-  background-image: radial-gradient(
-    var(--color-border) 1px,
-    transparent 1px
-  );
-  background-size: 22px 22px;
-  background-position: -6px -6px;
 }
 
 @keyframes blink-caret {
@@ -175,24 +201,23 @@ body {
   animation: blink-caret 1s step-end infinite;
 }
 
-/* Review-card illustration: a dot travelling proposed -> reason -> approved,
-   pausing at each end before looping back. */
+/* Proposed -> reason -> approved dot: transform only (translateX along a
+   track), never `left`, so it stays compositor-friendly. */
 @keyframes flow-dot {
   0%,
   12% {
-    left: 4%;
+    transform: translateX(0);
   }
   45%,
   57% {
-    left: 50%;
-  }
-  88%,
-  100% {
-    left: 4%;
+    transform: translateX(calc(var(--flow-track, 100%) * 0.5));
   }
   70%,
   86% {
-    left: 96%;
+    transform: translateX(var(--flow-track, 100%));
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
@@ -202,16 +227,16 @@ body {
 
 @keyframes stamp-pulse {
   0%,
-  62% {
+  60% {
     opacity: 0;
     transform: scale(0.85);
   }
-  72%,
-  86% {
+  70%,
+  84% {
     opacity: 1;
     transform: scale(1);
   }
-  96%,
+  92%,
   100% {
     opacity: 0;
     transform: scale(0.85);
