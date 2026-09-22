@@ -173,6 +173,31 @@ body {
   animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Scroll reveal. The hidden state is scoped to [data-reveal], an attribute
+   only ever written by the Reveal effect — so without JS, and under
+   reduced motion, none of this applies and the content renders normally.
+   Same rationale as the hero above: the motion is a CSS animation, never
+   a rAF-ticked tween holding real content at opacity 0. */
+[data-reveal="out"] {
+  opacity: 0;
+}
+
+[data-reveal="in"] {
+  animation: reveal-rise 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-y, 16px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes pulse-dot {
   0%,
   100% {
