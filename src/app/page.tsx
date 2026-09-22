@@ -1,10 +1,10 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/sections/hero";
+import { UltrafastShowpiece } from "@/components/sections/ultrafast-showpiece";
 import { Problem } from "@/components/sections/problem";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Sessions } from "@/components/sections/sessions";
-import { UltrafastShowpiece } from "@/components/sections/ultrafast-showpiece";
 import { ReviewVerdicts } from "@/components/sections/review-verdicts";
 import { HonestByDesign } from "@/components/sections/honest-by-design";
 import { NativeTracker } from "@/components/sections/native-tracker";
@@ -19,9 +19,9 @@ export default function Home() {
         <Problem />
         <HowItWorks />
         <Sessions />
-        <UltrafastShowpiece />
         <ReviewVerdicts />
         <HonestByDesign />
+        <UltrafastShowpiece />
         <NativeTracker />
         <ClosingCta />
       </main>

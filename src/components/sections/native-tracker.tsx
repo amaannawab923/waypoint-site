@@ -2,10 +2,13 @@ import { Reveal } from "../reveal";
 
 export function NativeTracker() {
   return (
-    <section className="relative border-t border-(--color-border-soft) bg-(--color-bg-raised) py-16 md:py-20">
+    <section
+      data-theme="light"
+      className="relative bg-(--color-bg-raised) py-14 text-(--color-fg) md:py-16"
+    >
       <div className="container-page">
-        <Reveal className="mx-auto max-w-2xl border-l border-(--color-border) pl-6">
-          <p className="font-mono text-xs tracking-[0.2em] text-(--color-fg-dim) uppercase">
+        <Reveal className="mx-auto max-w-2xl rounded-2xl border border-(--color-border) bg-(--color-bg) p-6">
+          <p className="text-xs font-medium tracking-wide text-(--color-fg-dim) uppercase">
             Also in the box
           </p>
           <p className="mt-3 text-sm leading-relaxed text-(--color-fg-muted)">

@@ -22,15 +22,15 @@ export function SiteHeader() {
     <header
       ref={ref}
       data-solid="false"
-      className="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-300 data-[solid=true]:border-(--color-border) data-[solid=true]:bg-(--color-bg)/85 data-[solid=true]:backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-300 data-[solid=true]:border-(--color-border) data-[solid=true]:bg-(--color-bg)/90 data-[solid=true]:backdrop-blur-md"
     >
-      <div className="container-page flex h-16 items-center justify-between md:h-20">
+      <div className="container-page flex h-14 items-center justify-between md:h-16">
         <a
           href="#top"
           className="flex items-center gap-2.5 text-(--color-fg)"
         >
-          <WaypointMark className="size-6 text-(--color-accent)" />
-          <span className="font-display text-lg font-semibold tracking-tight">
+          <WaypointMark className="size-5 text-(--color-accent)" />
+          <span className="text-sm font-semibold tracking-tight">
             Waypoint
           </span>
         </a>
