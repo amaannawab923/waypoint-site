@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { GitHubCta } from "../github-cta";
-import { DeviceFrame } from "../device-frame";
+import { VisualSlot } from "../visual-slot";
+import { HomeGlanceIllustration } from "../illustrations/home-glance";
 import { ensureGsap, prefersReducedMotion } from "@/lib/gsap";
 
 export function Hero() {
@@ -127,12 +128,9 @@ export function Hero() {
 
       <div className="container-page mt-16 md:mt-20">
         <div ref={frameRef} className="mx-auto max-w-5xl">
-          <DeviceFrame
-            src="/shots/home.jpg"
-            alt="Waypoint's home view: proposals waiting on you, the active sprint, and a live feed of recent tickets across projects."
-            label="waypoint.local"
-            priority
-          />
+          <VisualSlot label="Home &middot; conceptual">
+            <HomeGlanceIllustration />
+          </VisualSlot>
         </div>
       </div>
     </section>

@@ -2,32 +2,24 @@
 
 import { useEffect, useRef } from "react";
 import { Reveal } from "../reveal";
+import { VisualSlot } from "../visual-slot";
 import { ensureGsap, prefersReducedMotion } from "@/lib/gsap";
 
-const steps = [
-  {
-    src: "/shots/qa-step-1.jpg",
-    caption: "Page loads. Empty “Your name” field.",
-  },
-  {
-    src: "/shots/qa-step-2.jpg",
-    caption: "“Ada” typed into the field.",
-  },
-  {
-    src: "/shots/qa-step-3.jpg",
-    caption: "Submit pressed — “Hello, Ada!” appears.",
-  },
-  {
-    src: "/shots/qa-step-4.jpg",
-    caption: "Final frame, confirmed from the image itself.",
-  },
+const dotLabels = [
+  "Page loads",
+  "“Ada” typed",
+  "Submit pressed",
+  "Confirmed from the frame",
 ];
 
 export function UltrafastShowpiece() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const frameRefs = useRef<Array<HTMLDivElement | null>>([]);
   const clockRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const dotRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const typedRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -39,7 +31,7 @@ export function UltrafastShowpiece() {
 
     const ctx = gsap.context(() => {
       const counter = { v: 0 };
-      const frames = frameRefs.current.filter(Boolean) as HTMLDivElement[];
+      const dots = dotRefs.current.filter(Boolean) as HTMLSpanElement[];
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -49,7 +41,9 @@ export function UltrafastShowpiece() {
         },
       });
 
-      tl.set(frames, { opacity: 0.32, scale: 0.94 });
+      tl.set(dots, { backgroundColor: "var(--color-border)" });
+      tl.set([typedRef.current, resultRef.current], { opacity: 0 });
+      tl.set(buttonRef.current, { scale: 1 });
       tl.set(bar, { scaleX: 0 });
       tl.set(clock, { textContent: "0.0s" });
 
@@ -75,10 +69,18 @@ export function UltrafastShowpiece() {
         0
       );
 
-      frames.forEach((el, i) => {
+      dots.forEach((dot, i) => {
         const t = i * 0.62;
-        tl.to(el, { opacity: 1, scale: 1, duration: 0.3 }, t);
+        tl.to(dot, { backgroundColor: "var(--color-verify)", duration: 0.25 }, t);
       });
+
+      tl.to(typedRef.current, { opacity: 1, duration: 0.3 }, 0.62);
+      tl.to(
+        buttonRef.current,
+        { scale: 0.94, duration: 0.14, yoyo: true, repeat: 1 },
+        1.24
+      );
+      tl.to(resultRef.current, { opacity: 1, duration: 0.35 }, 1.55);
     }, section);
 
     return () => {
@@ -117,7 +119,8 @@ export function UltrafastShowpiece() {
             Instead of driving the page one model round trip at a time, a
             session can hand a multi-step browser walk to a fast decision
             model (TypeSafe&rsquo;s Jev, via browser-use/jev-ultrafast) in one
-            call. This is that real run, from Waypoint&rsquo;s own transcript.
+            call. Below is that real run&rsquo;s timing, redrawn as a panel —
+            not a screenshot of it.
           </p>
         </Reveal>
 
@@ -138,36 +141,67 @@ export function UltrafastShowpiece() {
             />
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {steps.map((step, i) => (
-              <div key={step.src}>
-                <div
-                  ref={(el) => {
-                    frameRefs.current[i] = el;
-                  }}
-                  className="overflow-hidden rounded-lg border border-(--color-border) bg-white"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={step.src}
-                    alt={step.caption}
-                    width={1120}
-                    height={780}
-                    loading="lazy"
-                    className="block h-auto w-full"
-                  />
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center">
+            <VisualSlot label="browser_task &middot; conceptual">
+              <div className="illustration-grid absolute inset-0 flex items-center justify-center p-6 sm:p-10">
+                <div className="w-full max-w-sm overflow-hidden rounded-lg border border-(--color-border) bg-white text-neutral-900 shadow-2xl">
+                  <div className="flex items-center gap-1.5 border-b border-neutral-200 bg-neutral-50 px-3 py-2">
+                    <span className="size-2 rounded-full bg-neutral-300" />
+                    <span className="size-2 rounded-full bg-neutral-300" />
+                    <span className="size-2 rounded-full bg-neutral-300" />
+                  </div>
+                  <div className="p-5">
+                    <p className="text-sm font-semibold">Greeter</p>
+                    <label className="mt-3 block text-[0.7rem] text-neutral-500">
+                      Your name
+                    </label>
+                    <div className="mt-1 flex items-center gap-2">
+                      <div className="relative flex h-8 flex-1 items-center rounded border border-neutral-300 px-2">
+                        <div
+                          ref={typedRef}
+                          className="flex items-center gap-0.5 text-sm"
+                        >
+                          Ada
+                          <span className="ml-0.5 inline-block h-3.5 w-px bg-neutral-400 animate-blink" />
+                        </div>
+                      </div>
+                      <div
+                        ref={buttonRef}
+                        className="rounded border border-neutral-300 bg-neutral-100 px-3 py-1.5 text-[0.7rem] font-medium"
+                      >
+                        Submit
+                      </div>
+                    </div>
+                    <div
+                      ref={resultRef}
+                      className="mt-3 text-sm font-medium text-emerald-700"
+                    >
+                      Hello, Ada!
+                    </div>
+                  </div>
                 </div>
-                <p className="mt-2.5 text-xs leading-snug text-(--color-fg-muted)">
-                  {step.caption}
-                </p>
               </div>
-            ))}
+            </VisualSlot>
+
+            <div className="flex flex-col gap-3">
+              {dotLabels.map((label, i) => (
+                <div key={label} className="flex items-center gap-3">
+                  <span
+                    ref={(el) => {
+                      dotRefs.current[i] = el;
+                    }}
+                    className="size-2.5 shrink-0 rounded-full bg-(--color-border)"
+                  />
+                  <span className="text-sm text-(--color-fg-muted)">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-10 rounded-lg border border-(--color-border) bg-(--color-bg-raised) p-5 font-mono text-[0.78rem] leading-relaxed text-(--color-fg-muted) md:text-[0.82rem]">
-            <span className="text-(--color-fg)">
-              Timing: 13.9s wall
-            </span>{" "}
+            <span className="text-(--color-fg)">Timing: 13.9s wall</span>{" "}
             · Chromium ready 0.7s · Jev 3 decisions, 5.5s total (avg 1824ms) ·
             Claude 1 text call, 7.0s · 4 screenshots returned
           </div>

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { Reveal } from "../reveal";
-import { DeviceFrame } from "../device-frame";
+import { VisualSlot } from "../visual-slot";
+import { ReviewCardIllustration } from "../illustrations/review-card";
 import { ensureGsap, prefersReducedMotion } from "@/lib/gsap";
 
 const verdicts = [
@@ -113,11 +114,9 @@ export function ReviewVerdicts() {
         </Reveal>
 
         <Reveal>
-          <DeviceFrame
-            src="/shots/review.jpg"
-            alt="Waypoint's Review queue: proposals waiting for approval, each with the reason it exists."
-            label="waypoint.local/review"
-          />
+          <VisualSlot label="Review card &middot; conceptual">
+            <ReviewCardIllustration />
+          </VisualSlot>
         </Reveal>
       </div>
     </section>

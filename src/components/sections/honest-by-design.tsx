@@ -1,5 +1,6 @@
 import { Reveal } from "../reveal";
-import { DeviceFrame } from "../device-frame";
+import { VisualSlot } from "../visual-slot";
+import { MachineSignalIllustration } from "../illustrations/machine-signal";
 import { CheckIcon } from "../icons";
 
 const rows = [
@@ -68,11 +69,9 @@ export function HonestByDesign() {
         </Reveal>
 
         <Reveal>
-          <DeviceFrame
-            src="/shots/machine.jpg"
-            alt="Waypoint's This machine page, listing exactly what leaves the laptop and what runs locally."
-            label="waypoint.local/machine"
-          />
+          <VisualSlot label="This machine &middot; conceptual">
+            <MachineSignalIllustration />
+          </VisualSlot>
         </Reveal>
       </div>
     </section>

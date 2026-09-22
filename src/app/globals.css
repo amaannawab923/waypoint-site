@@ -149,3 +149,75 @@ body {
 .animate-pulse-dot {
   animation: pulse-dot 1.6s ease-in-out infinite;
 }
+
+/* Faint dot-grid canvas used behind the coded illustrations that stand in
+   for real product screenshots (see docs/screenshots.md). */
+.illustration-grid {
+  background-image: radial-gradient(
+    var(--color-border) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  background-position: -6px -6px;
+}
+
+@keyframes blink-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink-caret 1s step-end infinite;
+}
+
+/* Review-card illustration: a dot travelling proposed -> reason -> approved,
+   pausing at each end before looping back. */
+@keyframes flow-dot {
+  0%,
+  12% {
+    left: 4%;
+  }
+  45%,
+  57% {
+    left: 50%;
+  }
+  88%,
+  100% {
+    left: 4%;
+  }
+  70%,
+  86% {
+    left: 96%;
+  }
+}
+
+.animate-flow-dot {
+  animation: flow-dot 5s ease-in-out infinite;
+}
+
+@keyframes stamp-pulse {
+  0%,
+  62% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  72%,
+  86% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  96%,
+  100% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+.animate-stamp {
+  animation: stamp-pulse 5s ease-in-out infinite;
+}

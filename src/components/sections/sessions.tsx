@@ -1,5 +1,6 @@
 import { Reveal } from "../reveal";
-import { DeviceFrame } from "../device-frame";
+import { VisualSlot } from "../visual-slot";
+import { SessionTranscriptIllustration } from "../illustrations/session-transcript";
 
 const modes = [
   {
@@ -59,11 +60,9 @@ export function Sessions() {
         </Reveal>
 
         <Reveal>
-          <DeviceFrame
-            src="/shots/sessions-list.jpg"
-            alt="Waypoint's My sessions list: Investigate and Fix runs, each on its own agent/<ticket-key> branch, with proposals waiting for review."
-            label="waypoint.local/sessions"
-          />
+          <VisualSlot label="Session transcript &middot; conceptual">
+            <SessionTranscriptIllustration />
+          </VisualSlot>
         </Reveal>
       </div>
     </section>
