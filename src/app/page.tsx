@@ -1,13 +1,16 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/sections/hero";
-import { UltrafastShowpiece } from "@/components/sections/ultrafast-showpiece";
-import { Problem } from "@/components/sections/problem";
-import { HowItWorks } from "@/components/sections/how-it-works";
-import { Sessions } from "@/components/sections/sessions";
-import { ReviewVerdicts } from "@/components/sections/review-verdicts";
-import { HonestByDesign } from "@/components/sections/honest-by-design";
-import { NativeTracker } from "@/components/sections/native-tracker";
+import { Capabilities } from "@/components/sections/capabilities";
+import { PositioningBand } from "@/components/sections/positioning-band";
+import { SplitSessions } from "@/components/sections/split-sessions";
+import { SplitVerify } from "@/components/sections/split-verify";
+import { SplitReview } from "@/components/sections/split-review";
+import { Flow } from "@/components/sections/flow";
+import { MetricsBand } from "@/components/sections/metrics-band";
+import { HonestyTeaser } from "@/components/sections/honesty-teaser";
+import { Comparison } from "@/components/sections/comparison";
+import { IntegrationsStrip } from "@/components/sections/integrations-strip";
 import { ClosingCta } from "@/components/sections/closing-cta";
 
 export default function Home() {
@@ -16,13 +19,16 @@ export default function Home() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <Problem />
-        <HowItWorks />
-        <Sessions />
-        <ReviewVerdicts />
-        <HonestByDesign />
-        <UltrafastShowpiece />
-        <NativeTracker />
+        <Capabilities />
+        <PositioningBand />
+        <SplitSessions />
+        <SplitVerify />
+        <SplitReview />
+        <Flow />
+        <MetricsBand />
+        <HonestyTeaser />
+        <Comparison />
+        <IntegrationsStrip />
         <ClosingCta />
       </main>
       <SiteFooter />

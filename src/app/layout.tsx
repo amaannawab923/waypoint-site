@@ -18,26 +18,31 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://waypoint-site.example";
 
+const defaultTitle = "Waypoint — the project tracker whose tickets do the work";
+const defaultDescription =
+  "Waypoint is a native, local-first project tracker — projects, sprints, docs, saved views, five board views — where every ticket can dispatch an agent to investigate or fix it in its own git worktree, verify the result in a browser, and wait for your approval.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Waypoint — a PM companion for teams that already live in Jira",
-  description:
-    "Connect your Jira and an AI layer sits on top of the tickets you already have: Copilot that shows the JQL it ran, Sessions in isolated worktrees, a propose-to-approve Review queue, and verdicts that map to your board. Native desktop app, open source, AGPL-3.0.",
+  title: {
+    default: defaultTitle,
+    template: "%s — Waypoint",
+  },
+  description: defaultDescription,
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
-    title: "Waypoint — a PM companion for teams that already live in Jira",
-    description:
-      "Copilot, Sessions, Review, and honest verdicts — layered on your real Jira tickets. Native desktop app, open source.",
+    title: defaultTitle,
+    description: defaultDescription,
     url: siteUrl,
     siteName: "Waypoint",
-    images: [{ url: "/og.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Waypoint — a PM companion for teams that already live in Jira",
-    description:
-      "Copilot, Sessions, Review, and honest verdicts — layered on your real Jira tickets.",
-    images: ["/og.png"],
+    title: defaultTitle,
+    description: defaultDescription,
   },
 };
 
