@@ -75,6 +75,17 @@ export function SiteHeader() {
         </button>
       </div>
 
+      <button
+        type="button"
+        tabIndex={open ? 0 : -1}
+        aria-hidden={!open}
+        aria-label="Close menu"
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 -z-10 bg-black/55 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
       <div
         id="mobile-nav"
         className={`overflow-y-auto border-t border-(--color-border) bg-(--color-bg) transition-[max-height] duration-300 md:hidden ${
