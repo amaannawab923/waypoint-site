@@ -113,6 +113,7 @@ export default function AgentsPage() {
               </p>
             </>
           }
+          bleed={false}
           panel={<WorktreeDiagram />}
         />
 

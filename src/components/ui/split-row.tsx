@@ -9,6 +9,9 @@ type SplitRowProps = {
   panel: React.ReactNode;
   /** Two to three concrete specifics, shown as a strip under the body. */
   facts?: { k: string; v: string }[];
+  /** Run the panel to the viewport edge. Off for fixed-width diagrams,
+   *  whose right-hand labels would be clipped by the overflow. */
+  bleed?: boolean;
   /** Panel on the left, text on the right. */
   reverse?: boolean;
   theme?: "light" | "dark";
@@ -28,45 +31,29 @@ export function SplitRow({
   linkLabel = "Learn more",
   panel,
   facts,
+  bleed = true,
   reverse = false,
   theme = "light",
 }: SplitRowProps) {
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-14 md:py-20"
+      className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-16 md:py-24"
     >
       <div className="container-page">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
           <Reveal
             className={`lg:col-span-5 ${reverse ? "lg:order-2" : "lg:order-1"}`}
           >
-            <p className="eyebrow mb-4">{eyebrow}</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-balance text-(--color-fg) sm:text-3xl">
-              {title}
-            </h2>
+            <p className="micro mb-5 text-(--color-fg-dim)">{eyebrow}</p>
+            <h2 className="display display-md text-(--color-fg)">{title}</h2>
             <div className="mt-4 space-y-3 text-[0.95rem] leading-relaxed text-(--color-fg-muted)">
               {body}
             </div>
-            {facts?.length ? (
-              <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-3 border-t border-(--color-border) pt-5 sm:grid-cols-2">
-                {facts.map((f) => (
-                  <div key={f.k}>
-                    <dt className="font-mono text-[0.68rem] tracking-wide text-(--color-fg-dim) uppercase">
-                      {f.k}
-                    </dt>
-                    <dd className="mt-1 text-[0.85rem] leading-snug text-(--color-fg)">
-                      {f.v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            ) : null}
-
             {href ? (
               <a
                 href={href}
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-(--color-accent) transition-colors hover:text-(--color-fg)"
+                className="micro mt-8 inline-flex items-center gap-2 border-b border-(--color-border-strong) pb-1 text-(--color-fg) transition-colors hover:border-(--color-fg)"
               >
                 {linkLabel}
                 <svg
@@ -87,15 +74,32 @@ export function SplitRow({
 
           <Reveal
             y={20}
-            className={`lg:col-span-7 ${reverse ? "lg:order-1" : "lg:order-2"} ${
-              reverse
-                ? "lg:-ml-16 xl:-ml-28"
-                : "lg:-mr-16 xl:-mr-28"
+            className={`lg:col-span-7 ${
+              /* Only ever bleeds right. A left bleed pushes the start of the
+                 panel off-screen, which hid the first frame of the verify
+                 panel entirely — the reversed row keeps its panel inside
+                 the container instead. */
+              reverse ? "lg:order-1" : `lg:order-2 ${bleed ? "bleed-r" : ""}`
             }`}
           >
             {panel}
           </Reveal>
         </div>
+
+        {facts?.length ? (
+          <Reveal className="mt-14 border-t border-(--color-border) pt-8">
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-6 lg:grid-cols-4">
+              {facts.map((f) => (
+                <div key={f.k}>
+                  <dt className="micro text-(--color-fg-dim)">{f.k}</dt>
+                  <dd className="mt-2 text-[0.9rem] leading-snug text-(--color-fg)">
+                    {f.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );

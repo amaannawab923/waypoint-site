@@ -28,8 +28,8 @@ export function Comparison() {
     <section data-theme="light" className="relative border-t border-(--color-border) bg-(--color-bg-raised) py-20 md:py-28">
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow mb-4">Plainly put</p>
-          <h2 className="text-3xl font-semibold tracking-tight text-balance text-(--color-fg) md:text-4xl">
+          <p className="micro mb-5 text-(--color-fg-dim)">Plainly put</p>
+          <h2 className="display display-lg text-(--color-fg)">
             What Waypoint is — and isn&rsquo;t.
           </h2>
         </Reveal>

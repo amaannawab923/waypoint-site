@@ -82,11 +82,10 @@ export function QaShowpiece() {
       ref={sectionRef}
       className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28"
     >
-      <div className="dot-grid" aria-hidden />
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow mb-4">The real run</p>
-          <h2 className="text-3xl font-semibold tracking-tight text-balance text-(--color-fg) md:text-4xl">
+          <p className="micro mb-5 text-(--color-fg-dim)">The real run</p>
+          <h2 className="display display-lg text-(--color-fg)">
             This is Waypoint&rsquo;s own transcript, timed.
           </h2>
         </Reveal>

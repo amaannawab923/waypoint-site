@@ -1,72 +1,56 @@
-import { FeatureGrid } from "../ui/feature-grid";
-import {
-  BoardIcon,
-  SprintIcon,
-  DocIcon,
-  InboxIcon,
-  HistoryIcon,
-  SessionIcon,
-  CameraIcon,
-  ShieldCheckIcon,
-  CalendarIcon,
-} from "../icons";
+import { Rail } from "../ui/rail";
 
 const items = [
   {
-    icon: <BoardIcon />,
-    name: "List, board, calendar, spreadsheet, Gantt",
-    body: "Five views over the same tickets — switch how you look at the work, not which tool holds it.",
+    index: "01",
+    name: "Five views, one set of tickets",
+    body: "List, board, calendar, spreadsheet and Gantt over the same work — you change how you look at it, not which tool holds it.",
   },
   {
-    icon: <SprintIcon />,
-    name: "Sprints & workstreams",
-    body: "Sprint-style iterations with a live burndown chart, plus workstreams for work that doesn't fit a sprint.",
+    index: "02",
+    name: "Sprints and workstreams",
+    body: "Sprint-style iterations with a live burndown, plus workstreams for the work that never did fit inside a sprint.",
   },
   {
-    icon: <DocIcon />,
-    name: "Docs & saved views",
-    body: "Freeform project docs and shareable, filtered views your team actually reuses instead of rebuilding.",
+    index: "03",
+    name: "Docs and saved views",
+    body: "Freeform project docs, and filtered views your team actually reuses instead of rebuilding the same filter every Monday.",
   },
   {
-    icon: <InboxIcon />,
-    name: "Requests queue",
-    body: "An incoming queue that turns an outside ask — a Slack message, an email — into a real, triaged ticket.",
+    index: "04",
+    name: "A requests queue",
+    body: "The outside ask — a Slack message, an email, a form — arrives as a real triaged ticket instead of a tap on the shoulder.",
   },
   {
-    icon: <HistoryIcon />,
+    index: "05",
     name: "Full activity history",
-    body: "Every change, human or agent, lands in the same append-only log — in order, never silently overwritten.",
+    body: "Every change, human or agent, lands in one append-only log, in order. Nothing is silently overwritten by anyone.",
   },
   {
-    icon: <SessionIcon />,
-    name: "Sessions on any ticket",
-    body: "Dispatch Investigate, Fix, or something else straight from a ticket into its own isolated git worktree.",
+    index: "06",
+    name: "A session on any ticket",
+    body: "Dispatch Investigate, Fix, or a one-off brief straight from the ticket into its own isolated git worktree.",
   },
   {
-    icon: <CameraIcon />,
-    name: "Browser verification",
-    body: "A session checks its own work in a real browser and brings back screenshots, not just a claim of done.",
+    index: "07",
+    name: "Verification with evidence",
+    body: "A session drives a real browser against its own change and brings back frames — not a claim that it is done.",
   },
   {
-    icon: <ShieldCheckIcon />,
+    index: "08",
     name: "Propose, never push",
-    body: "Every agent write — a fix, a comment, a status flip — waits in a review queue for a person to approve.",
-  },
-  {
-    icon: <CalendarIcon />,
-    name: "Deep-linked routes",
-    body: "Real, address-bar-updating routes — hard refresh, back and forward, and shareable links all just work.",
+    body: "Every agent write — a fix, a comment, a status flip — waits in a queue for a person. There is no autonomous path.",
   },
 ];
 
 export function Capabilities() {
   return (
-    <FeatureGrid
+    <Rail
       eyebrow="What's in the tracker"
-      title="A real project tracker, not a bolt-on."
-      intro="Everything a team already expects from a tracker — plus the part no other tracker has: tickets that can go do the work themselves."
+      title="A real tracker first. The agents come second."
+      intro="Everything a team already expects — and then the part no other tracker has, which only matters because the first part is actually there."
       items={items}
-      columns={3}
+      theme="light"
     />
   );
 }

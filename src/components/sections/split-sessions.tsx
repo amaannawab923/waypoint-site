@@ -32,7 +32,7 @@ export function SplitSessions() {
       ]}
       href="/agents"
       linkLabel="See how sessions work"
-      panel={<SessionTranscriptPanel />}
+      panel={<SessionTranscriptPanel session="queue" />}
     />
   );
 }

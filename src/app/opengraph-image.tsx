@@ -14,7 +14,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0b0a12",
+          background: "#0a0a0b",
           padding: "64px 72px",
           position: "relative",
         }}
@@ -24,7 +24,7 @@ export default function OgImage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(60% 60% at 70% 10%, rgba(129,140,248,0.28) 0%, transparent 70%)",
+              "radial-gradient(60% 60% at 70% 10%, rgba(95,211,155,0.20) 0%, transparent 70%)",
           }}
         />
 
@@ -33,12 +33,12 @@ export default function OgImage() {
             <path
               d="M16 3 L29 16 L16 29 L3 16 Z"
               fill="none"
-              stroke="#818cf8"
+              stroke="#5fd39b"
               strokeWidth="2.5"
             />
-            <circle cx="16" cy="16" r="3.5" fill="#818cf8" />
+            <circle cx="16" cy="16" r="3.5" fill="#5fd39b" />
           </svg>
-          <span style={{ fontSize: 28, fontWeight: 600, color: "#f5f5f7" }}>
+          <span style={{ fontSize: 28, fontWeight: 600, color: "#f7f6f3" }}>
             Waypoint
           </span>
         </div>
@@ -52,7 +52,7 @@ export default function OgImage() {
               fontWeight: 600,
               lineHeight: 1.08,
               letterSpacing: "-0.02em",
-              color: "#f5f5f7",
+              color: "#f7f6f3",
               maxWidth: 980,
             }}
           >
@@ -76,7 +76,7 @@ export default function OgImage() {
           }}
         >
           <span>github.com/amaannawab923/waypoint</span>
-          <span style={{ color: "#818cf8" }}>AGPL-3.0</span>
+          <span style={{ color: "#5fd39b" }}>AGPL-3.0</span>
         </div>
       </div>
     ),

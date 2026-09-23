@@ -14,14 +14,6 @@ export function ClosingCta({
 }) {
   return (
     <section className="relative overflow-hidden bg-(--color-bg) py-24 md:py-32">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-[-30%] h-[70%]"
-        style={{
-          background:
-            "radial-gradient(55% 70% at 50% 100%, rgba(129,140,248,0.2) 0%, transparent 70%)",
-        }}
-      />
       <div className="container-page relative text-center">
         <Reveal className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-semibold tracking-tight text-balance text-(--color-fg) md:text-5xl">

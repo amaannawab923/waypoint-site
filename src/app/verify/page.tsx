@@ -90,7 +90,7 @@ export default function VerifyPage() {
           }
           href="/review"
           linkLabel="See a proposal with its evidence"
-          panel={<SessionTranscriptPanel compact />}
+          panel={<SessionTranscriptPanel session="export" compact />}
         />
 
         <SpecTable

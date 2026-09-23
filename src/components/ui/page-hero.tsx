@@ -15,24 +15,13 @@ export function PageHero({
   cta?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-(--color-border) bg-(--color-bg) pt-28 pb-16 md:pt-40 md:pb-20">
-      <div className="dot-grid" aria-hidden />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[-20%] -z-0 h-[70%]"
-        style={{
-          background:
-            "radial-gradient(50% 60% at 50% 20%, rgba(129,140,248,0.2) 0%, transparent 75%)",
-        }}
-      />
+    <section className="relative overflow-hidden bg-(--color-bg) pt-32 pb-20 md:pt-44 md:pb-28">
       <div className="container-page relative">
-        <div className="max-w-2xl">
-          <p className="animate-fade-up eyebrow mb-5">{eyebrow}</p>
-          <h1 className="animate-fade-up text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance">
-            {title}
-          </h1>
+        <div className="max-w-3xl">
+          <p className="animate-fade-up micro text-(--color-fg-dim)">{eyebrow}</p>
+          <h1 className="animate-fade-up display display-lg mt-7">{title}</h1>
           <p
-            className="animate-fade-up mt-6 text-base leading-relaxed text-(--color-fg-muted) md:text-lg"
+            className="animate-fade-up mt-7 max-w-xl text-base leading-relaxed text-(--color-fg-muted) md:text-lg"
             style={{ animationDelay: "80ms" }}
           >
             {body}

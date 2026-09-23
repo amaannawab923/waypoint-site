@@ -68,6 +68,7 @@ export default function HonestPage() {
               </p>
             </>
           }
+          bleed={false}
           panel={
             <div className="panel-frame p-6 sm:p-8">
               <MachineSignalIllustration />

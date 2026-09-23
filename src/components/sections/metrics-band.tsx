@@ -4,11 +4,10 @@ import { HEADLINE_METRICS } from "@/lib/content/metrics";
 export function MetricsBand() {
   return (
     <section className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28">
-      <div className="dot-grid" aria-hidden />
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-xl text-center">
-          <p className="eyebrow mb-4">Measured, not estimated</p>
-          <h2 className="text-3xl font-semibold tracking-tight text-balance text-(--color-fg) md:text-4xl">
+          <p className="micro mb-5 text-(--color-fg-dim)">Measured, not estimated</p>
+          <h2 className="display display-lg text-(--color-fg)">
             One real run, timed end to end.
           </h2>
         </Reveal>

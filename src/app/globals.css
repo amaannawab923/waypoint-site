@@ -1,48 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  /* Elegant, serval.com-register palette. Root = the dark sections
-     (hero, the ultrafast showpiece, the footer). Light product sections
-     override these same variable names inside [data-theme="light"] below,
-     so components never need theme-specific class names. */
-  --color-bg: #0b0a12;
-  --color-bg-raised: #131220;
+  /* Near-monochrome. The two grounds are a true near-black and a warm
+     paper off-white, with high contrast between bands rather than a
+     decorative accent doing the work — the type carries the page. The
+     one accent is functional only: it marks verified/approved state and
+     nothing else, so it never reads as brand decoration. */
+  --color-bg: #0a0a0b;
+  --color-bg-raised: #141417;
 
-  --color-border: rgba(148, 163, 184, 0.14);
-  --color-border-strong: rgba(148, 163, 184, 0.4);
+  --color-border: rgba(247, 246, 243, 0.13);
+  --color-border-strong: rgba(247, 246, 243, 0.3);
 
-  --color-fg: #f5f5f7;
-  --color-fg-muted: #a1a1ac;
-  --color-fg-dim: #858592;
+  --color-fg: #f7f6f3;
+  --color-fg-muted: #aba9a2;
+  --color-fg-dim: #8a887f;
 
-  --color-accent: #818cf8;
-  --color-on-accent: #0b0a12;
-  --color-accent-dim: rgba(129, 140, 248, 0.14);
+  --color-accent: #5fd39b;
+  --color-on-accent: #07120d;
+  --color-accent-dim: rgba(95, 211, 155, 0.12);
 
-  --color-danger: #f87171;
+  --color-danger: #f0907f;
 
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-bricolage);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Light product sections — verified contrast on a near-white ground
-   (fg-muted #475569 on #F8F9FC is ~7.5:1; accent #4F46E5 is ~5.6:1). */
+/* Warm paper. Verified on #f4f2ed: fg 16.75:1, muted 6.88:1,
+   dim 4.93:1, accent 6.02:1 — all clear of the 4.5:1 AA minimum. */
 [data-theme="light"] {
-  --color-bg: #f8f9fc;
+  --color-bg: #f4f2ed;
   --color-bg-raised: #ffffff;
 
-  --color-border: rgba(15, 23, 42, 0.1);
-  --color-border-strong: rgba(15, 23, 42, 0.28);
+  --color-border: rgba(18, 18, 17, 0.12);
+  --color-border-strong: rgba(18, 18, 17, 0.28);
 
-  --color-fg: #14141c;
-  --color-fg-muted: #475569;
-  --color-fg-dim: #475569;
+  --color-fg: #121211;
+  --color-fg-muted: #55534c;
+  --color-fg-dim: #6b695f;
 
-  --color-accent: #4f46e5;
+  --color-accent: #11693f;
   --color-on-accent: #ffffff;
-  --color-accent-dim: rgba(79, 70, 229, 0.08);
+  --color-accent-dim: rgba(17, 105, 63, 0.08);
 
-  --color-danger: #dc2626;
+  --color-danger: #a83a28;
 }
 
 @theme inline {
@@ -57,6 +59,7 @@
   --color-on-accent: var(--color-on-accent);
   --color-accent-dim: var(--color-accent-dim);
   --color-danger: var(--color-danger);
+  --font-display: var(--font-display);
 
   --font-mono: var(--font-mono);
   --font-sans: var(--font-sans);
@@ -423,4 +426,89 @@ body {
   font-size: 0.875rem;
   color: var(--color-accent);
   flex-shrink: 0;
+}
+
+
+/* ---- Display type -------------------------------------------------- */
+/* Headlines are set large and tight; the scale is deliberately steep so a
+   page opens with a statement rather than a slightly-bigger paragraph. */
+.display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.display-xl {
+  font-size: clamp(2.9rem, 8.2vw, 6.5rem);
+}
+
+.display-lg {
+  font-size: clamp(2.3rem, 5.4vw, 4.25rem);
+}
+
+.display-md {
+  font-size: clamp(1.85rem, 3.4vw, 2.85rem);
+  line-height: 1.04;
+}
+
+/* A small uppercase label. Used for section eyebrows and pill buttons. */
+.micro {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* ---- Layout primitives --------------------------------------------- */
+/* A rail of cards that runs off the right edge of the screen: the row
+   always reaches both edges, so a section never reads as a small object
+   marooned in a wide band, and the overflow itself says there is more. */
+.rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78vw;
+  gap: 0.9rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 1.25rem;
+  padding-inline: 1.25rem;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail > * {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .rail {
+    grid-auto-columns: 34vw;
+    gap: 1.1rem;
+    scroll-padding-left: 2.5rem;
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .rail {
+    grid-auto-columns: 25rem;
+  }
+}
+
+/* Content that reaches the viewport edge on one side while its text
+   column stays on the page grid. */
+.bleed-r {
+  margin-right: calc(50% - 50vw);
+}
+
+@media (max-width: 1023px) {
+  .bleed-r {
+    margin-right: 0;
+  }
 }

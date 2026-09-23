@@ -28,8 +28,8 @@ export function FeatureGrid({
     >
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow mb-4">{eyebrow}</p>
-          <h2 className="text-3xl font-semibold tracking-tight text-balance text-(--color-fg) md:text-4xl">
+          <p className="micro mb-5 text-(--color-fg-dim)">{eyebrow}</p>
+          <h2 className="display display-lg text-(--color-fg)">
             {title}
           </h2>
           {intro ? (

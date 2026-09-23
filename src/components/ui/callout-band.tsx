@@ -31,7 +31,7 @@ export function CalloutBand({
               {icon}
             </span>
             <div>
-              <p className="eyebrow mb-2">{eyebrow}</p>
+              <p className="micro mb-2 text-(--color-fg-dim)">{eyebrow}</p>
               <h3 className="text-xl leading-snug font-semibold tracking-tight text-balance text-(--color-fg) md:text-2xl">
                 {title}
               </h3>
