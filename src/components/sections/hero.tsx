@@ -16,8 +16,34 @@ const rows = [
  */
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-(--color-bg)">
-      <div className="container-page pt-32 pb-16 md:pt-44 md:pb-20">
+    <section id="top" className="relative overflow-hidden">
+      <div
+        aria-hidden
+        style={{ "--tilt": "-11deg" } as React.CSSProperties}
+        className="aura-float absolute top-56 left-8 hidden size-36 rounded-3xl border border-white/60 bg-white/55 p-4 shadow-[0_20px_45px_rgba(21,19,43,0.08)] backdrop-blur-xl lg:flex lg:flex-col xl:left-16"
+      >
+        <span className="micro text-(--color-fg-dim)">worktree</span>
+        <span className="mt-auto font-mono text-[0.72rem] leading-snug text-(--color-fg)">
+          agent/WP-77
+        </span>
+        <span className="font-mono text-[0.65rem] text-(--color-fg-dim)">
+          isolated
+        </span>
+      </div>
+
+      <div
+        aria-hidden
+        style={{ "--tilt": "9deg" } as React.CSSProperties}
+        className="aura-float aura-float--slow absolute top-40 right-8 hidden size-32 flex-col justify-between rounded-3xl border border-white/60 bg-white/55 p-4 shadow-[0_20px_45px_rgba(21,19,43,0.08)] backdrop-blur-xl lg:flex xl:right-16"
+      >
+        <span className="micro text-(--color-fg-dim)">verified</span>
+        <span className="font-mono text-2xl text-(--color-ok)">13.9s</span>
+        <span className="font-mono text-[0.65rem] text-(--color-fg-dim)">
+          4 frames
+        </span>
+      </div>
+
+      <div className="relative container-page pt-32 pb-16 md:pt-44 md:pb-20">
         <div className="mx-auto max-w-4xl text-center">
           <p className="animate-fade-up micro text-(--color-fg-dim)">
             Native desktop app · local-first
@@ -54,7 +80,9 @@ export function Hero() {
         className="animate-fade-up container-page pb-20 md:pb-28"
         style={{ animationDelay: "200ms" }}
       >
-        <div className="mx-auto max-w-4xl rounded-2xl border border-(--color-border) bg-(--color-bg-raised) p-6 sm:p-8">
+        <div className="relative mx-auto max-w-4xl rounded-2xl">
+          <span className="aura-glow" aria-hidden />
+          <div className="relative rounded-2xl border border-(--color-border) bg-(--color-bg-raised) p-6 sm:p-8 shadow-[0_30px_70px_-30px_rgba(21,19,43,0.22)]">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-(--color-border) pb-5">
             <span className="flex items-center gap-2.5 font-mono text-xs text-(--color-fg-dim)">
               <span className="size-1.5 animate-pulse-dot rounded-full bg-(--color-accent)" />
@@ -97,6 +125,7 @@ export function Hero() {
             <span className="micro rounded-full bg-(--color-accent) px-4 py-2 text-(--color-on-accent)">
               Approve
             </span>
+            </div>
           </div>
         </div>
       </div>

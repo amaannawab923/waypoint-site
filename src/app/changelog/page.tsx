@@ -23,7 +23,7 @@ export default function ChangelogPage() {
           body="Built from real merged work on main — no invented releases, no version numbers that don't exist. Grouped by the day it landed."
         />
 
-        <section data-theme="light" className="relative border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28">
+        <section data-theme="light" className="relative border-t border-(--color-border) bg-transparent py-20 md:py-28">
           <div className="container-page">
             <div className="mx-auto max-w-3xl">
               {CHANGELOG.map((group) => (

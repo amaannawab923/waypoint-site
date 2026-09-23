@@ -38,7 +38,7 @@ export function SplitRow({
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-16 md:py-24"
+      className="relative overflow-hidden border-t border-(--color-border) bg-transparent py-16 md:py-24"
     >
       <div className="container-page">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">

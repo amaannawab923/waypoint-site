@@ -7,7 +7,7 @@ import { Reveal } from "../reveal";
  */
 export function PositioningBand() {
   return (
-    <section className="relative overflow-hidden bg-(--color-bg) py-24 md:py-32">
+    <section data-theme="dark" className="relative overflow-hidden bg-(--color-bg) py-24 md:py-32">
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-4xl text-center">
           <p className="display display-lg text-(--color-fg)">

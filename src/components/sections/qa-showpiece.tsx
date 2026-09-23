@@ -80,7 +80,7 @@ export function QaShowpiece() {
     <section
       id="the-run"
       ref={sectionRef}
-      className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28"
+      className="relative overflow-hidden border-t border-(--color-border) bg-transparent py-20 md:py-28"
     >
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-2xl text-center">

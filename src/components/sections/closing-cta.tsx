@@ -13,7 +13,7 @@ export function ClosingCta({
   secondaryLabel?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-(--color-bg) py-24 md:py-32">
+    <section data-theme="dark" className="relative overflow-hidden bg-(--color-bg) py-24 md:py-32">
       <div className="container-page relative text-center">
         <Reveal className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-semibold tracking-tight text-balance text-(--color-fg) md:text-5xl">

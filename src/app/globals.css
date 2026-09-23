@@ -1,50 +1,57 @@
 @import "tailwindcss";
 
+/* Light-first, in the soft-lavender register: a near-white ground with
+   white surfaces floating on it, one violet accent, and a separate green
+   reserved for verified/approved state so the accent never has to mean
+   two things. Contrast measured on #faf9ff — ink 17.29:1, muted 6.94:1,
+   dim 4.83:1, accent 6.20:1 — all clear of the 4.5:1 AA minimum. */
 :root {
-  /* Near-monochrome. The two grounds are a true near-black and a warm
-     paper off-white, with high contrast between bands rather than a
-     decorative accent doing the work — the type carries the page. The
-     one accent is functional only: it marks verified/approved state and
-     nothing else, so it never reads as brand decoration. */
-  --color-bg: #0a0a0b;
-  --color-bg-raised: #141417;
+  --color-bg: #faf9ff;
+  --color-bg-raised: #ffffff;
+  --color-bg-sunk: #f3f1fd;
 
-  --color-border: rgba(247, 246, 243, 0.13);
-  --color-border-strong: rgba(247, 246, 243, 0.3);
+  --color-border: rgba(21, 19, 43, 0.09);
+  --color-border-strong: rgba(21, 19, 43, 0.2);
 
-  --color-fg: #f7f6f3;
-  --color-fg-muted: #aba9a2;
-  --color-fg-dim: #8a887f;
+  --color-fg: #15132b;
+  --color-fg-muted: #56546e;
+  --color-fg-dim: #6e6c86;
 
-  --color-accent: #5fd39b;
-  --color-on-accent: #07120d;
-  --color-accent-dim: rgba(95, 211, 155, 0.12);
+  --color-accent: #5245db;
+  --color-on-accent: #ffffff;
+  --color-accent-dim: rgba(82, 69, 219, 0.09);
 
-  --color-danger: #f0907f;
+  --color-ok: #12714c;
+  --color-ok-dim: rgba(18, 113, 76, 0.1);
+
+  --color-danger: #b3261e;
 
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-bricolage);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Warm paper. Verified on #f4f2ed: fg 16.75:1, muted 6.88:1,
-   dim 4.93:1, accent 6.02:1 — all clear of the 4.5:1 AA minimum. */
-[data-theme="light"] {
-  --color-bg: #f4f2ed;
-  --color-bg-raised: #ffffff;
+/* The few deliberately dark bands (the statement, the closing call). */
+[data-theme="dark"] {
+  --color-bg: #100f1e;
+  --color-bg-raised: #191830;
+  --color-bg-sunk: #0b0a16;
 
-  --color-border: rgba(18, 18, 17, 0.12);
-  --color-border-strong: rgba(18, 18, 17, 0.28);
+  --color-border: rgba(248, 247, 252, 0.12);
+  --color-border-strong: rgba(248, 247, 252, 0.28);
 
-  --color-fg: #121211;
-  --color-fg-muted: #55534c;
-  --color-fg-dim: #6b695f;
+  --color-fg: #f8f7fc;
+  --color-fg-muted: #a9a7be;
+  --color-fg-dim: #8b89a2;
 
-  --color-accent: #11693f;
-  --color-on-accent: #ffffff;
-  --color-accent-dim: rgba(17, 105, 63, 0.08);
+  --color-accent: #a79cff;
+  --color-on-accent: #100f1e;
+  --color-accent-dim: rgba(167, 156, 255, 0.16);
 
-  --color-danger: #a83a28;
+  --color-ok: #5fd39b;
+  --color-ok-dim: rgba(95, 211, 155, 0.14);
+
+  --color-danger: #f0907f;
 }
 
 @theme inline {
@@ -58,6 +65,9 @@
   --color-accent: var(--color-accent);
   --color-on-accent: var(--color-on-accent);
   --color-accent-dim: var(--color-accent-dim);
+  --color-bg-sunk: var(--color-bg-sunk);
+  --color-ok: var(--color-ok);
+  --color-ok-dim: var(--color-ok-dim);
   --color-danger: var(--color-danger);
   --font-display: var(--font-display);
 
@@ -511,4 +521,183 @@ body {
   .bleed-r {
     margin-right: 0;
   }
+}
+
+
+/* ==== Ambient background ===========================================
+   A fixed, full-viewport field of heavily-blurred colour that drifts
+   slowly behind everything. Pure CSS on purpose: this sits under every
+   page, so it must never cost a WebGL context or a rAF tick — and the
+   reduced-motion block above stops the drift outright by capping
+   iteration count, leaving the colour exactly where it started. */
+
+.aura-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.aura-blob {
+  position: absolute;
+  border-radius: 50%;
+  /* One blur pass on a soft radial keeps the edges from banding the way
+     a blurred hard-edged circle does at this radius. */
+  filter: blur(90px);
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .aura-blob {
+    filter: blur(120px);
+  }
+}
+
+.aura-blob--1 {
+  top: -14%;
+  left: -12%;
+  width: 46vw;
+  height: 44vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-accent) 42%, transparent),
+    transparent 70%
+  );
+  animation: aura-drift-1 34s ease-in-out infinite;
+}
+
+.aura-blob--2 {
+  top: 6%;
+  right: -16%;
+  width: 40vw;
+  height: 52vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-ok) 30%, transparent),
+    transparent 70%
+  );
+  animation: aura-drift-2 42s ease-in-out infinite;
+}
+
+.aura-blob--3 {
+  top: 48%;
+  left: 24%;
+  width: 52vw;
+  height: 38vw;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-accent) 26%, transparent),
+    transparent 72%
+  );
+  animation: aura-drift-3 50s ease-in-out infinite;
+}
+
+@keyframes aura-drift-1 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(9vw, 7vh, 0) scale(1.18);
+  }
+}
+
+@keyframes aura-drift-2 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  50% {
+    transform: translate3d(-8vw, 10vh, 0) scale(0.92);
+  }
+}
+
+@keyframes aura-drift-3 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+  50% {
+    transform: translate3d(-11vw, -8vh, 0) scale(1.14);
+  }
+}
+
+/* ==== Floating glass cards ========================================= */
+/* Small frosted cards parked at the hero's edges that bob gently. The
+   rotation is carried inside the keyframe so the tilt survives the
+   animation instead of being reset by it. */
+.aura-float {
+  animation: aura-float 6s ease-in-out infinite;
+}
+
+.aura-float--slow {
+  animation-duration: 8.5s;
+  animation-delay: -2s;
+}
+
+@keyframes aura-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--tilt, 0deg));
+  }
+}
+
+/* ==== Animated glow behind the product frame ======================= */
+.aura-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    to right,
+    var(--color-accent),
+    color-mix(in oklab, var(--color-accent) 50%, var(--color-ok)),
+    var(--color-accent)
+  );
+  background-size: 200% 100%;
+  filter: blur(26px);
+  opacity: 0.22;
+  animation: aura-sweep 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes aura-sweep {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* ==== Entrance ===================================================== */
+/* Content resolves out of a slight blur and lift rather than a plain
+   fade — it is what gives the openers their softness. */
+@keyframes aura-rise {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(20px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: aura-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+[data-reveal="in"] {
+  animation: aura-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--reveal-delay, 0s);
 }

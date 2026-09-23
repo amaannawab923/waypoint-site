@@ -3,7 +3,7 @@ import { HEADLINE_METRICS } from "@/lib/content/metrics";
 
 export function MetricsBand() {
   return (
-    <section className="relative overflow-hidden border-t border-(--color-border) bg-(--color-bg) py-20 md:py-28">
+    <section className="relative overflow-hidden border-t border-(--color-border) bg-transparent py-20 md:py-28">
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="micro mb-5 text-(--color-fg-dim)">Measured, not estimated</p>

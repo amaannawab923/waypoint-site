@@ -17,7 +17,7 @@ const items = [
 
 export function IntegrationsStrip() {
   return (
-    <section data-theme="light" className="relative border-t border-(--color-border) bg-(--color-bg) py-16 md:py-20">
+    <section data-theme="light" className="relative border-t border-(--color-border) bg-transparent py-16 md:py-20">
       <div className="container-page">
         <Reveal className="mb-10 text-center">
           <p className="micro text-(--color-fg-dim)">Real integrations, not a wall of logos</p>

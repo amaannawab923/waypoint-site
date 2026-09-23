@@ -29,7 +29,7 @@ export function Rail({
   return (
     <section
       data-theme={theme === "light" ? "light" : undefined}
-      className="border-t border-(--color-border) bg-(--color-bg) py-16 md:py-24"
+      className="border-t border-(--color-border) bg-transparent py-16 md:py-24"
     >
       <div className="container-page">
         <Reveal className="max-w-3xl">

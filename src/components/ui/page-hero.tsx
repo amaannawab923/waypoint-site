@@ -15,7 +15,7 @@ export function PageHero({
   cta?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-(--color-bg) pt-32 pb-20 md:pt-44 md:pb-28">
+    <section className="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28">
       <div className="container-page relative">
         <div className="max-w-3xl">
           <p className="animate-fade-up micro text-(--color-fg-dim)">{eyebrow}</p>
