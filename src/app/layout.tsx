@@ -27,7 +27,15 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://waypoint-site.example";
+/* Set NEXT_PUBLIC_SITE_URL to the deployed origin so canonical and
+   OpenGraph URLs point at the real site. Vercel exposes the deployment
+   host as VERCEL_PROJECT_PRODUCTION_URL, which is the sensible fallback
+   before a custom domain is attached. */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:4321");
 
 const defaultTitle = "Waypoint — the project tracker whose tickets do the work";
 const defaultDescription =
