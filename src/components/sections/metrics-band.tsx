@@ -13,12 +13,12 @@ export function MetricsBand() {
         </Reveal>
 
         <Reveal
-          className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-(--color-border) bg-(--color-border) lg:grid-cols-4"
+          className="mt-14 grid min-w-[720px] grid-cols-2 gap-px overflow-hidden rounded-2xl border border-(--color-border) bg-(--color-border) lg:grid-cols-4"
           stagger={0.06}
         >
           {HEADLINE_METRICS.map((m) => (
             <div key={m.label} className="bg-(--color-bg) p-6 sm:p-7">
-              <p className="metric-figure text-3xl text-(--color-accent) sm:text-4xl">
+              <p className="metric-figure text-3xl text-(--color-bg) sm:text-4xl">
                 {m.value}
               </p>
               <p className="mt-2 text-sm font-medium text-(--color-fg)">{m.label}</p>

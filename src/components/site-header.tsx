@@ -66,7 +66,6 @@ export function SiteHeader() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
           className="flex size-11 items-center justify-center rounded-lg text-(--color-fg) md:hidden"
         >
           <svg viewBox="0 0 20 20" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
