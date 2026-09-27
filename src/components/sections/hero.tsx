@@ -50,7 +50,7 @@ export function Hero() {
           </p>
 
           <h1 className="animate-fade-up display display-xl mt-7 text-(--color-fg)">
-            The project tracker whose tickets do the the work.
+            The project tracker whose tickets do the work.
           </h1>
 
           <p
